@@ -3,6 +3,7 @@ package umc.spring.domain.mapping;
 import lombok.*;
 import umc.spring.domain.Member;
 import umc.spring.domain.NotificationType;
+import umc.spring.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberNotificationAgree {
+public class MemberNotificationAgree extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
