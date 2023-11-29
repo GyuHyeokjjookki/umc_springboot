@@ -1,6 +1,7 @@
 package umc.spring.domain.mapping;
 
 import lombok.*;
+import umc.spring.domain.Member;
 import umc.spring.domain.Region;
 import umc.spring.domain.Restaurant;
 import umc.spring.domain.common.BaseEntity;
@@ -25,4 +26,15 @@ public class RestaurantRegion extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private Region region;
+
+    public void setRestaurant(Restaurant restaurant){
+        if(this.restaurant != null)
+            restaurant.getRestaurantRegionList().remove(this);
+        this.restaurant = restaurant;
+        restaurant.getRestaurantRegionList().add(this);
+    }
+
+    public void setRegion(Region region){
+        this.region = region;
+    }
 }

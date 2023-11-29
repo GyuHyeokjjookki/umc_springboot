@@ -2,6 +2,7 @@ package umc.spring.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.FoodCategoryHandler;
 import umc.spring.converter.MemberConverter;
@@ -13,7 +14,7 @@ import umc.spring.repository.FoodCategoryRepository;
 import umc.spring.repository.MemberRepository;
 import umc.spring.web.dto.MemberRequestDTO;
 
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
