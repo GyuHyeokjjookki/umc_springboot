@@ -37,7 +37,7 @@ public class Restaurant extends BaseEntity {
     private Float rating;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Mission> mission = new ArrayList<>();
+    private List<Mission> missionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<RestaurantOperation> restaurantOperationList = new ArrayList<>();
