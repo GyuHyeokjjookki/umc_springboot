@@ -1,7 +1,6 @@
 package umc.spring.web.dto;
 
 import lombok.Getter;
-import umc.spring.validation.annotation.ExistCategories;
 import umc.spring.validation.annotation.ExistRegion;
 
 import javax.validation.constraints.NotBlank;
