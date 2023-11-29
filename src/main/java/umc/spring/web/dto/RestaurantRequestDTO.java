@@ -1,8 +1,11 @@
 package umc.spring.web.dto;
 
 import lombok.Getter;
+import umc.spring.validation.annotation.ExistCategories;
+import umc.spring.validation.annotation.ExistRegion;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 public class RestaurantRequestDTO {
 
@@ -14,5 +17,7 @@ public class RestaurantRequestDTO {
         String location;
         @NotBlank
         String specAddress;
+        @ExistRegion
+        List<Long> locatedRegion;
     }
 }
