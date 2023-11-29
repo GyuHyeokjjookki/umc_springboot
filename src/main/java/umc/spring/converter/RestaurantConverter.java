@@ -5,6 +5,7 @@ import umc.spring.web.dto.RestaurantRequestDTO;
 import umc.spring.web.dto.RestaurantResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class RestaurantConverter {
 
@@ -20,6 +21,7 @@ public class RestaurantConverter {
                 .name(request.getName())
                 .location(request.getLocation())
                 .specAddress(request.getSpecAddress())
+                .restaurantRegionList(new ArrayList<>())
                 .build();
     }
 }
