@@ -33,4 +33,18 @@ public class Review extends BaseEntity {
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> reviewImageList = new ArrayList<>();
+
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getReviewList().remove(this);
+        this.member = member;
+        member.getReviewList().add(this);
+    }
+
+    public void setRestaurant(Restaurant restaurant){
+        if(this.restaurant != null)
+            restaurant.getReviewList().remove(this);
+        this.restaurant = restaurant;
+        restaurant.getReviewList().add(this);
+    }
 }
