@@ -37,5 +37,11 @@ public class MemberMission extends BaseEntity {
         member.getMemberMissionList().add(this);
     }
 
-    public void setMission(Mission mission){ this.mission = mission; }
+    public void setMission(Mission mission) {
+        if (this.mission != null) {
+            this.mission.getMemberMissionList().remove(this);
+        }
+        this.mission=mission;
+        mission.getMemberMissionList().add(this);
+    }
 }
