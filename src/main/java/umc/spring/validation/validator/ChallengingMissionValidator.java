@@ -24,14 +24,15 @@ public class ChallengingMissionValidator implements ConstraintValidator<Challeng
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-//        MemberMission memberMission = memberMissionQueryService.findMemberMission(value);
-//
-//        if(memberMission.getStatus() == MissionStatus.CHALLENGING){
-//            context.disableDefaultConstraintViolation();
-//            context.buildConstraintViolationWithTemplate(ErrorStatus.INPROGRESS_MISSION.toString())
-//                    .addConstraintViolation();
-//            return false;
-//        }
+        if(value != 1){
+            MemberMission memberMission = memberMissionQueryService.findMemberMission(value);
+
+            if(memberMission.getStatus() == MissionStatus.CHALLENGING){
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate(ErrorStatus.INPROGRESS_MISSION.toString()).addConstraintViolation();
+                return false;
+            }
+        }
         return true;
     }
 }
