@@ -26,9 +26,7 @@ public class ChallengingMissionValidator implements ConstraintValidator<Challeng
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        boolean isValid = memberMissionRepository.existsById(value);
-
-        if(isValid){
+        if(memberMissionQueryService.findMemberMission(value) != null){
             MemberMission memberMission = memberMissionQueryService.findMemberMission(value);
 
             if(memberMission.getStatus() == MissionStatus.CHALLENGING){
