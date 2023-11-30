@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
+import umc.spring.repository.MemberMissionRepository;
 import umc.spring.service.MemberMissionService.MemberMissionQueryService;
 import umc.spring.validation.annotation.ChallengingMissions;
 
@@ -16,6 +17,7 @@ import javax.validation.ConstraintValidatorContext;
 public class ChallengingMissionValidator implements ConstraintValidator<ChallengingMissions, Long> {
 
     private final MemberMissionQueryService memberMissionQueryService;
+    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     public void initialize(ChallengingMissions constraintAnnotation) {
@@ -24,7 +26,9 @@ public class ChallengingMissionValidator implements ConstraintValidator<Challeng
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        if(value != 1){
+        boolean isValid = memberMissionRepository.existsById(value);
+
+        if(isValid){
             MemberMission memberMission = memberMissionQueryService.findMemberMission(value);
 
             if(memberMission.getStatus() == MissionStatus.CHALLENGING){
