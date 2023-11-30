@@ -6,20 +6,15 @@ import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.converter.MemberConverter;
 import umc.spring.converter.MemberMissionConverter;
-import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
-import umc.spring.domain.Review;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.service.MemberMissionService.MemberMissionCommandService;
 import umc.spring.service.MemberService.MemberCommandService;
 import umc.spring.validation.annotation.ChallengingMissions;
 import umc.spring.validation.annotation.ExistMembers;
 import umc.spring.validation.annotation.ExistMissions;
-import umc.spring.validation.annotation.ExistRestaurants;
 import umc.spring.web.dto.MemberRequestDTO;
 import umc.spring.web.dto.MemberResponseDTO;
-import umc.spring.web.dto.ReviewRequestDTO;
-import umc.spring.web.dto.ReviewResponseDTO;
 
 import javax.validation.Valid;
 
