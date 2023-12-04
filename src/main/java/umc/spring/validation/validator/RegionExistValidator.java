@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.repository.RegionRepository;
+import umc.spring.service.RegionService.RegionQueryService;
 import umc.spring.validation.annotation.ExistRegion;
 
 import javax.validation.ConstraintValidator;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RegionExistValidator implements ConstraintValidator<ExistRegion, List<Long>> {
 
-    private final RegionRepository regionRepository;
+    private final RegionQueryService regionQueryService;
 
     @Override
     public void initialize(ExistRegion constraintAnnotation) {
@@ -24,7 +25,7 @@ public class RegionExistValidator implements ConstraintValidator<ExistRegion, Li
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
         boolean isValid = values.stream()
-                .allMatch(value -> regionRepository.existsById(value));
+                .allMatch(value -> regionQueryService.existRegionById(value));
 
         if(!isValid) {
             context.disableDefaultConstraintViolation();
