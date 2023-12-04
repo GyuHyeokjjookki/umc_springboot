@@ -17,7 +17,6 @@ import javax.validation.ConstraintValidatorContext;
 public class ChallengingMissionValidator implements ConstraintValidator<ChallengingMissions, Long> {
 
     private final MemberMissionQueryService memberMissionQueryService;
-    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     public void initialize(ChallengingMissions constraintAnnotation) {
