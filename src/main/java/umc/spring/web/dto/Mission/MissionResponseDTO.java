@@ -1,9 +1,6 @@
 package umc.spring.web.dto.Mission;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.web.dto.ReviewResponseDTO;
 
 import java.time.LocalDate;
@@ -70,5 +67,16 @@ public class MissionResponseDTO {
         Long totalElements;
         Boolean isFirst;
         Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CompleteMissionDTO{
+        Long missionId;
+        String status;
+        Integer reward;
+        LocalDate updatedAt;
     }
 }
