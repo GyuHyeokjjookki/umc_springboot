@@ -45,4 +45,30 @@ public class MissionResponseDTO {
         String content;
         LocalDate createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MyChallengingMissionDTO{
+        String restaurantName;
+        String status;
+        String content;
+        Integer reward;
+        LocalDate deadLine;
+        LocalDate createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MyChallengingMissionListDTO{
+        List<MyChallengingMissionDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
 }
