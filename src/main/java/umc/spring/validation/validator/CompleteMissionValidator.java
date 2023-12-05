@@ -1,36 +1,38 @@
 package umc.spring.validation.validator;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
-import umc.spring.repository.MemberMissionRepository;
 import umc.spring.service.MemberMissionService.MemberMissionQueryService;
-import umc.spring.validation.annotation.ChallengingMissions;
+import umc.spring.validation.annotation.AlreadyCompleteMission;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class ChallengingMissionValidator implements ConstraintValidator<ChallengingMissions, Long> {
+@Transactional(readOnly = true)
+public class CompleteMissionValidator implements ConstraintValidator<AlreadyCompleteMission, Long> {
 
     private final MemberMissionQueryService memberMissionQueryService;
 
     @Override
-    public void initialize(ChallengingMissions constraintAnnotation) {
+    public void initialize(AlreadyCompleteMission constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
+    @Transactional
     public boolean isValid(Long value, ConstraintValidatorContext context) {
         if(memberMissionQueryService.findMemberMissionByMissionId(value) != null){
             MemberMission memberMission = memberMissionQueryService.findMemberMissionByMissionId(value);
 
-            if(memberMission.getStatus() == MissionStatus.CHALLENGING){
+            if(memberMission.getStatus() == MissionStatus.COMPLETE){
                 context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate(ErrorStatus.INPROGRESS_MISSION.toString()).addConstraintViolation();
+                context.buildConstraintViolationWithTemplate(ErrorStatus.ALREADY_COMPLETE_MISSION.toString()).addConstraintViolation();
                 return false;
             }
         }
