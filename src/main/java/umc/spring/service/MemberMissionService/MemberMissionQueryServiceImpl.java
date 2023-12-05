@@ -25,7 +25,7 @@ public class MemberMissionQueryServiceImpl implements MemberMissionQueryService 
     private final MemberRepository memberRepository;
 
     @Override
-    public MemberMission findMemberMission(Long missionId) {
+    public MemberMission findMemberMissionByMissionId(Long missionId) {
         return memberMissionRepository.findByMissionId(missionId);
     }
 

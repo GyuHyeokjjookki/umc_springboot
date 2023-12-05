@@ -7,7 +7,7 @@ import umc.spring.domain.mapping.MemberMission;
 import java.util.Optional;
 
 public interface MemberMissionQueryService {
-    MemberMission findMemberMission(Long missionId);
+    MemberMission findMemberMissionByMissionId(Long missionId);
 
     public Page<MemberMission> getMyMissionList(Long memberId, Integer page);
 }
