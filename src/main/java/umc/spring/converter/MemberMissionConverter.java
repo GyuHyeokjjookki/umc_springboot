@@ -3,7 +3,6 @@ package umc.spring.converter;
 import org.springframework.data.domain.Page;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
-import umc.spring.domain.Restaurant;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.web.dto.MemberResponseDTO;
@@ -53,6 +52,16 @@ public class MemberMissionConverter {
                 .totalPage(myMissionList.getTotalPages())
                 .totalElements(myMissionList.getTotalElements())
                 .listSize(myChallengingMissionDTOList.size())
+                .build();
+    }
+
+    public static MissionResponseDTO.CompleteMissionDTO completeMissionDTO(MemberMission memberMission){
+
+        return MissionResponseDTO.CompleteMissionDTO.builder()
+                .missionId(memberMission.getMission().getId())
+                .status(memberMission.getStatus().name())
+                .reward(memberMission.getMission().getReward())
+                .updatedAt(memberMission.getUpdatedAt().toLocalDate())
                 .build();
     }
 }

@@ -10,6 +10,7 @@ import umc.spring.converter.MemberMissionConverter;
 import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
+import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.repository.MemberMissionRepository;
 import umc.spring.repository.MemberRepository;
@@ -35,5 +36,18 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         MemberMission challenge = MemberMissionConverter.toChallengeMission(member, mission);
 
         return memberMissionRepository.save(challenge);
+    }
+
+    @Override
+    @Transactional
+    public MemberMission completeMission(Long missionId, Long memberId) {
+
+        Member member = memberRepository.findById(memberId).get();
+        Mission mission = missionRepository.findById(missionId).get();
+
+        MemberMission memberMission = memberMissionRepository.findByMemberAndMission(member, mission);
+        memberMission.setStatus(MissionStatus.COMPLETE);
+
+        return memberMission;
     }
 }
