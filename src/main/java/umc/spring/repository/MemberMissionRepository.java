@@ -10,5 +10,6 @@ import umc.spring.domain.mapping.MemberMission;
 
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long> {
     MemberMission findByMissionId(Long missionId);
+    MemberMission findByMemberAndMission(Member member, Mission mission);
     Page<MemberMission> findAllByMemberAndStatus(Member member, MissionStatus missionStatus, PageRequest pageRequest);
 }
