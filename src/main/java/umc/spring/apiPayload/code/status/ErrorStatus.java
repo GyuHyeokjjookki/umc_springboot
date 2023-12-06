@@ -34,7 +34,7 @@ public enum ErrorStatus implements BaseErrorCode {
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION_4001", "지역이 존재하지 않습니다."),
 
     //restaurant review error
-    RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW4001", "식당이 존재하지 않습니다."),
+    RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "RESTAURANT4001", "식당이 존재하지 않습니다."),
 
     //mission error
     INPROGRESS_MISSION(HttpStatus.MULTI_STATUS, "MISSION4001", "이미 도전중인 미션입니다."),
